@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Rating from '../Rating';
 import Price from '../ui/Price';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useParams } from 'react-router-dom';
 import Book from '../ui/Book';
 
 const BookInfo = ( {books} ) => {
@@ -16,17 +16,17 @@ const BookInfo = ( {books} ) => {
                 <div className="books__container">
                     <div className="row">
                         <div className="book__selected--top">
-                            <Link to="/books" className="book__link">
+                        
                             <FontAwesomeIcon icon="arrow-left" />
-                            <Link to="/book" className="book__link"><h2 className="book__selected--title--top">
+                            <Link to="/books" className="book__link"><h2 className="book__selected--title--top">
                                 Books
                                 </h2></Link>
-                            </Link>
+                        
                         </div>
                         <div className="book__selected">
                             <figure className="book__selected--figure">
-                                <img className="book__selected--img" src={book.url}>
-                                </img>
+                                <img className="book__selected--img" src={book.url} />
+                                
                             </figure>
                             <div className="book__selected--description">
                                 <h2 className="book__selected--title">{book.title}</h2>
