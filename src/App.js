@@ -10,15 +10,15 @@ import Cart from './components/pages/Cart.jsx';
 
 
 function App() {
-  const [Cart, setCart] = useState([]);
+  const [cart, setCart] = useState([]);
 
   function addToCart(book) {
-    setCart([...Cart, {...book, quantity: 1}])
+    setCart([...cart, {...book, quantity: 1}])
    
   }
 
   function changeQuantity(book, quantity) {
-    setCart(Cart.map(item => 
+    setCart(cart.map(item => 
        item.id === book.id 
       ?
         {
@@ -34,21 +34,21 @@ function App() {
   }
 
   function removeItem(item) {
-    setCart(Cart.filter(book => book.id !== item.id))
+    setCart(cart.filter(book => book.id !== item.id))
     console.log('removeItem', item)
   }
 
  function numberOfItems() {
   let counter = 0;
-  Cart.forEach(item => {
+  cart.forEach(item => {
     counter += item.quantity
   })
   return counter;
  }
 
   useEffect(() => {
-    console.log(Cart);
-  }, [Cart])
+    console.log(cart);
+  }, [cart])
 
   return (
     <Router>
@@ -57,8 +57,18 @@ function App() {
      <Switch>
      <Route path="/"  exact component={Home} />
      <Route path="/books" exact render={() => <Books books={books} />} />
-     <Route path="/books/:id" exact render={() => <BookInfo books={books} addToCart={addToCart}/>} />
-     <Route path="/Cart" render={() => <Cart books={books} Cart={Cart} changeQuantity= {changeQuantity} removeItem={removeItem}/>} />
+     <Route
+  path="/books/:id"
+  exact
+  render={() => (
+    <BookInfo
+      books={books}
+      addToCart={addToCart}
+      cart={cart}
+    />
+  )}
+/>
+     <Route path="/cart" render={() => <Cart books={books} cart={cart} changeQuantity= {changeQuantity} removeItem={removeItem}/>} />
      </Switch>
      <Footer />
 
